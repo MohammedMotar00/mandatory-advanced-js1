@@ -38,7 +38,7 @@ class LogIn extends Component {
                         />
                     </div>
                     <Link onClick={event => {
-                        let valid = /^[a-z\d_-]{1,12}$/i.test(this.state.value);
+                        let valid = /^[a-z\d\s_-]{1,12}$/i.test(this.state.value);
                         if (!valid) {
                             event.preventDefault();
                         }

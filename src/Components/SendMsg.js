@@ -30,12 +30,20 @@ class SendMsg extends Component {
         })
     }
 
+    x = (e) => {
+        if (this.state.value.length >=1 && this.state.value.length <= 200) {
+            return true;
+        }
+        alert('The content must be between 1 and 200 characters long')
+        e.preventDefault();
+    }
+
 
     render() {
         return (
             <form onSubmit={this.rensaInput.bind(this)}>
                 <input type="text" value={this.state.value} onChange={this.setValue.bind(this)}/>
-                <button type="submit">Send</button>
+                <button onClick={this.x.bind(this)} type="submit">Send</button>
                 <Link to="/">
                     <button>Exit</button>
                 </Link>

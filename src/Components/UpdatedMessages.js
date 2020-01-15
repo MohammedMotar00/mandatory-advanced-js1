@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import io from 'socket.io-client'
 import SendMsg from './SendMsg';
 import { emojify } from 'react-emojione'
 import Linkify from 'react-linkify'
