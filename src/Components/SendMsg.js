@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import io from 'socket.io-client'
+import { Link } from 'react-router-dom'
 
 class SendMsg extends Component {
     constructor(props) {
@@ -35,6 +36,9 @@ class SendMsg extends Component {
             <form onSubmit={this.rensaInput.bind(this)}>
                 <input type="text" value={this.state.value} onChange={this.setValue.bind(this)}/>
                 <button type="submit">Send</button>
+                <Link to="/">
+                    <button>Exit</button>
+                </Link>
             </form>
         )
     }

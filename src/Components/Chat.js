@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import io from 'socket.io-client'
 import UpdatedMessages from './UpdatedMessages';
+import { emojify } from 'react-emojione'
+import Linkify from 'react-linkify'
 
 
 class Chat extends Component {
@@ -25,42 +27,23 @@ class Chat extends Component {
         })
     }
 
-    //     this.state.messages.map(msg => {
-    //         // let word = msg.content.split(" ");
-    //         return console.log('hej');
-    //         // if (/^https?/ig.test(word)) {
-    //         //         return <a href={word}>{word}</a>
-    //         //     }
-    //         //     return <> {word} </>;
-    //     })
+    componentWillUnmount() {
 
-    //     console.log('object');
-    // }
+    }
 
 
 
     render() {
         const { username, messages } = this.state;
 
-        // let url = messages.map(msg => {
-        //     let word = msg.content.split(" ");
-        //     if (/^https?/ig.test(word)) {
-        //             return <a href={word}>{word}</a>
-        //         }
-        //         return <> {word} </>;
-        // })
-
         let msg = messages.map(message => {
 
-            return <p key={message.id}>{message.username}: {message.content}</p>;
-            // return <p key={message.id}>{message.username}: {replace_content(message.content)}</p>;
+            return <p key={message.id}>{message.username}: <Linkify> {emojify(message.content)} </Linkify></p>;
         })
 
         return (
             <div>
-                {/* {x} */}
                 {msg}
-                {/* {replace_content()} */}
                 <UpdatedMessages username={username}/>
             </div>
         )

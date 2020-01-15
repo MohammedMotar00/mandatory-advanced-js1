@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import io from 'socket.io-client'
 import SendMsg from './SendMsg';
+import { emojify } from 'react-emojione'
+import Linkify from 'react-linkify'
 
 class UpdatedMessages extends Component {
     constructor(props) {
@@ -28,7 +30,7 @@ class UpdatedMessages extends Component {
         const { newMsg, username } = this.state;
 
         let messages = newMsg.map(message => {
-            return <p key={message.id}>{message.username}: {message.content}</p>
+            return <p key={message.id}>{message.username}: <Linkify> {emojify(message.content)} </Linkify></p>
         })
         return (
             <div>
