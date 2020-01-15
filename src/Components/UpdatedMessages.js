@@ -15,14 +15,17 @@ class UpdatedMessages extends Component {
     }
 
     componentDidMount() {
-        const socket = io('http://3.120.96.16:3000');
-
-        socket.on('new_message', (data) => {
+        this.props.socket.on('new_message', (data) => {
+            console.log(data)
             let msg = this.state.newMsg;
             msg.push(data);
 
             this.setState({newMsg: msg});
         })
+    }
+
+    componentWillUnmount() {
+        this.props.socket.off('new_message');
     }
 
 

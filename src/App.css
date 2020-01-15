@@ -2,37 +2,45 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+/* Start of LogIn.js */
+
+.h1-chatApp {
+  font-size: 6rem;
+  color: rgb(255, 178, 61);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.div-login {
+  height: 100vh;
+  background-color: rgb(42, 95, 138);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.login-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.h1-login {
+  font-size: 4rem;
+  color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(112,9,121,0.6814075972185749) 53%, rgba(0,212,255,1) 100%);
+}
+
+.input-form {
+  margin-top: 4rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.button-login {
+  font-size: 1.3rem;
+  padding: 8px 1.4rem;
+  margin-top: 1.2rem;
+  background-color: rgba(255, 0, 0, 0.384);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* End of LogIn.js */

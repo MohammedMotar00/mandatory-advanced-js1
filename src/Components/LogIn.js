@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import '../App.css';
 
 class LogIn extends Component {
     constructor(props) {
@@ -21,13 +22,31 @@ class LogIn extends Component {
         let namn = this.state.value;
 
         return (
-            <form>
-                <h1>Logga in</h1>
-                <div><input type="text" value={this.state.value} onChange={this.setName.bind(this)}/></div>
-                <Link onClick={event => !this.state.value ? event.preventDefault() : null} to={"/chat/" + namn}>
-                    <button type="submit">LogIn</button>
-                </Link>
-            </form>
+            <div className="div-login">
+                <form className="login-form">
+                    <h1 className="h1-chatApp">Chat App</h1>
+                    <h1 className="h1-login">Logga in</h1>
+                    <div>
+                        <input 
+                            placeholder="Enter Your Name"
+                            className="input-form"
+                            type="text"
+                            value={this.state.value}
+                            onChange={this.setName.bind(this)}
+                            minLength="1"
+                            maxLength="12"
+                        />
+                    </div>
+                    <Link onClick={event => {
+                        let valid = /^[a-z\d_-]{1,12}$/i.test(this.state.value);
+                        if (!valid) {
+                            event.preventDefault();
+                        }
+                    }} to={"/chat/" + namn}>
+                        <button className="button-login" type="submit">LogIn</button>
+                    </Link>
+                </form>
+            </div>
         )
     }
 }
