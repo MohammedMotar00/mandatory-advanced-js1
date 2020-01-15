@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import io from 'socket.io-client'
+import UpdatedMessages from './UpdatedMessages';
 
 
 class Chat extends Component {
@@ -8,42 +9,59 @@ class Chat extends Component {
     
         this.state = {
             username: props.username,
-            messages: []
+            messages: [],
+            convertUrl: []
         }
     }
-    
 
     componentDidMount() {
         const socket = io('http://3.120.96.16:3000');
+
         socket.on('messages', (data) => {
 
-        this.setState({
-            messages: data
+            this.setState({
+                messages: data
+            })
         })
-    })
     }
 
-    componentDidUpdate() {
-        const socket = io('http://3.120.96.16:3000');
-        socket.on('messages', (data) => {
+    //     this.state.messages.map(msg => {
+    //         // let word = msg.content.split(" ");
+    //         return console.log('hej');
+    //         // if (/^https?/ig.test(word)) {
+    //         //         return <a href={word}>{word}</a>
+    //         //     }
+    //         //     return <> {word} </>;
+    //     })
 
-        this.setState({
-            messages: data
-        })
-    })
-    }
+    //     console.log('object');
+    // }
 
-    clg = () => {
-        console.log(this.state.messages);
-    }
+
 
     render() {
-        let messages = this.state.messages.map(message => {
-            return <p>{message.username}: {message.content}</p>;
-        });
+        const { username, messages } = this.state;
+
+        // let url = messages.map(msg => {
+        //     let word = msg.content.split(" ");
+        //     if (/^https?/ig.test(word)) {
+        //             return <a href={word}>{word}</a>
+        //         }
+        //         return <> {word} </>;
+        // })
+
+        let msg = messages.map(message => {
+
+            return <p key={message.id}>{message.username}: {message.content}</p>;
+            // return <p key={message.id}>{message.username}: {replace_content(message.content)}</p>;
+        })
+
         return (
-            <div className="chat">
-                {messages}
+            <div>
+                {/* {x} */}
+                {msg}
+                {/* {replace_content()} */}
+                <UpdatedMessages username={username}/>
             </div>
         )
     }
