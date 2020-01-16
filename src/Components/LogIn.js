@@ -7,7 +7,6 @@ class LogIn extends Component {
         super(props)
     
         this.state = {
-            username: '',
             value: ''
         }
     }
@@ -19,7 +18,7 @@ class LogIn extends Component {
     }
 
     render() {
-        let namn = this.state.value;
+        const { value } = this.state
 
         return (
             <div className="div-login">
@@ -31,18 +30,18 @@ class LogIn extends Component {
                             placeholder="Enter Your Name"
                             className="input-form"
                             type="text"
-                            value={this.state.value}
+                            value={value}
                             onChange={this.setName.bind(this)}
                             minLength="1"
                             maxLength="12"
                         />
                     </div>
                     <Link onClick={event => {
-                        let valid = /^[a-z\d\s_-]{1,12}$/i.test(this.state.value);
+                        let valid = /^[a-z\d\s_-]{1,12}$/i.test(value);
                         if (!valid) {
                             event.preventDefault();
                         }
-                    }} to={"/chat/" + namn}>
+                    }} to={"/chat/" + value}>
                         <button className="button-login" type="submit">LogIn</button>
                     </Link>
                 </form>

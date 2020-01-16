@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SendMsg from './SendMsg';
 import { emojify } from 'react-emojione'
 import Linkify from 'react-linkify'
+import '../App.css';
 
 class UpdatedMessages extends Component {
     constructor(props) {
@@ -15,7 +16,6 @@ class UpdatedMessages extends Component {
 
     componentDidMount() {
         this.props.socket.on('new_message', (data) => {
-            console.log(data)
             let msg = this.state.newMsg;
             msg.push(data);
 
@@ -32,7 +32,13 @@ class UpdatedMessages extends Component {
         const { newMsg, username } = this.state;
 
         let messages = newMsg.map(message => {
-            return <p key={message.id}>{message.username}: <Linkify> {emojify(message.content)} </Linkify></p>
+            return <div className="div-updatedMsg" key={message.id}>
+                        <p className="updatedMsg" key={message.id}>
+                            <span className="updatedMsg-span">{message.username}:</span> 
+                                <br/><br/> 
+                            <Linkify> {emojify(message.content)} </Linkify>
+                        </p>
+                    </div>
         })
         return (
             <div>

@@ -3,6 +3,7 @@ import io from 'socket.io-client'
 import UpdatedMessages from './UpdatedMessages';
 import { emojify } from 'react-emojione'
 import Linkify from 'react-linkify'
+import '../App.css';
 
 
 class Chat extends Component {
@@ -11,8 +12,7 @@ class Chat extends Component {
     
         this.state = {
             username: props.username,
-            messages: [],
-            convertUrl: []
+            messages: []
         }
 
         this.socket = io('http://3.120.96.16:3000');
@@ -37,11 +37,17 @@ class Chat extends Component {
         const { username, messages } = this.state;
 
         let msg = messages.map(message => {
-            return <p key={message.id}>{message.username}: <Linkify> {emojify(message.content)} </Linkify></p>;
+            return <div key={message.id} className="div-chat">
+                        <p className="p-chat" key={message.id}>
+                            <span className="span-chat">{message.username}:</span> 
+                                <br/><br/> 
+                            <Linkify> {emojify(message.content)} </Linkify>
+                        </p>
+                    </div>;
         })
 
         return (
-            <div>
+            <div className="container-chat">
                 {msg}
                 <UpdatedMessages socket={this.socket} username={username}/>
             </div>

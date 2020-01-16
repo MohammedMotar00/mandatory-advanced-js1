@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import io from 'socket.io-client'
 import { Link } from 'react-router-dom'
+import '../App.css';
+import { IoIosCloseCircle, IoIosSend } from 'react-icons/io';
 
 class SendMsg extends Component {
     constructor(props) {
@@ -40,12 +42,24 @@ class SendMsg extends Component {
 
 
     render() {
+        const { value } = this.state;
+
         return (
-            <form onSubmit={this.rensaInput.bind(this)}>
-                <input type="text" value={this.state.value} onChange={this.setValue.bind(this)}/>
-                <button onClick={this.x.bind(this)} type="submit">Send</button>
+            <form className="form-sendMsg" onSubmit={this.rensaInput.bind(this)}>
+                <div className="div-input-sendMsg">
+                    <input 
+                        className="input-sendMsg" 
+                        type="text" value={value}
+                        onChange={this.setValue.bind(this)}
+                        placeholder="Skriv här ..."
+                    />
+                    <button className="button-sendMsg" onClick={this.x.bind(this)}>
+                        <IoIosSend className="send"/>
+                    </button>
+                </div>
+
                 <Link to="/">
-                    <button>Exit</button>
+                    <span className="exit"><IoIosCloseCircle /> </span>
                 </Link>
             </form>
         )

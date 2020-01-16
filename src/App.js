@@ -10,7 +10,7 @@ import Chat from './Components/Chat';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Router>
         <ChangePage />
         <Route exact path="/" component={LogIn}/>
